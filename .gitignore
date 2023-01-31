@@ -1,0 +1,4 @@
+env/
+src/parser/*
+db-data/
+.dockerignore
