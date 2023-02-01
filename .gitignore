@@ -1,4 +1,6 @@
 env/
 src/parser/*
 db-data/
-.dockerignore
+db/
+mongodb/
+metabase-data/
