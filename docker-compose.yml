@@ -4,8 +4,8 @@ services:
     image : mongo:4.4
     container_name: mongodb
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=docker
-      - MONGO_INITDB_ROOT_PASSWORD=docker
+      - MONGO_INITDB_ROOT_USERNAME=lappis
+      - MONGO_INITDB_ROOT_PASSWORD=lappis
     volumes:
       - ./mongodb:/data/db
     ports:
@@ -20,9 +20,9 @@ services:
     volumes:
       - ./db-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=docker
-      - METABASE_PASSWORD=docker
+      - POSTGRES_USER=lappis
+      - POSTGRES_PASSWORD=lappis
+      - METABASE_PASSWORD=lappis
     ports:
       - 5432:5432
     networks:
@@ -34,10 +34,10 @@ services:
       - ./db:/db-data
     environment:
       - MB_DB_TYPE=postgres
-      - MB_DB_DBNAME=docker
+      - MB_DB_DBNAME=lappis
       - MB_DB_PORT=5432
-      - MB_DB_USER=docker
-      - MB_DB_PASS=docker
+      - MB_DB_USER=lappis
+      - MB_DB_PASS=lappis
       - MB_DB_HOST=postgres
     ports:
       - 3000:3000
@@ -48,16 +48,18 @@ services:
     networks:
       - postgres-network
 
-  # mongo-express:
-  #   image: mongo-express
-  #   container_name: mongo-express
-  #   ports:
-  #     - 8081:8081
-  #   restart: always
-  #   environment:
-  #     ME_CONFIG_MONGODB_ADMINUSERNAME: root
-  #     ME_CONFIG_MONGODB_ADMINPASSWORD: password
-  #     ME_CONFIG_MONGODB_SERVER: mongodb
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    ports:
+      - 8081:8081
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: lappis
+      ME_CONFIG_MONGODB_ADMINPASSWORD: lappis
+      ME_CONFIG_MONGODB_SERVER: mongodb
+    networks:
+      - postgres-network
 
   # python_app:
   #   container_name: python_app
